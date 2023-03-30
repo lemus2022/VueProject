@@ -1,38 +1,47 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Message from HelloWorld"/> -->
-  <Homework v-if="isSentence" :msgc="message4" />
-  <b><Homework v-false ="isSentence" :msg="message" :msgg="message2" :msggg="message3" /></b>
-  <p><b>The Rick And Morty Characters</b></p>
+  <Homework v-if="!isSentence" :msgc="message4" :msg="message" :msgg="message2" :msggg="message3"  />
+  <b><Homework v-if="isSentence" :msg="message" :msgg="message2" :msggg="message3" /></b>
+  <p class="p-main"><b>The Rick And Morty Characters</b></p>
  
-  <ul>
-    <ol v-for="(Character, idx) in Characters" :key="idx">
-      <br> {{ Character.name }} <br>
+  <ul class="row justify-content-center">
+    <ol class="mr-3 " v-for="(Character, idx) in Characters" :key="idx">
+      <br> <div class="div-names">{{ Character.name }}</div> 
       <img class="img-chars" :src="Character.image"/>
+      <div class="div-descrip">Description</div>
+       Status:  {{ Character.status }} 
+       Gender: {{ Character.gender }} <br>
+       Origin: {{ Character.origin.name }} <br><br>
     </ol>
+    
   </ul>
 
+  <div class="div-bottom">Project Features: </div>
+  <div>-2 components used </div>
+  <div>-Consuming Rick and Morty API </div>
+  <div>-Use of Vue´s Life cycle (mounted()) </div>
+  <div>-Use of condition for showing or hide a message </div>
+  <div>-Use a for cycle to show the Characters name,image,species,etc   </div>
+  <div style="margin-bottom: 40px;">-Style on every component </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
-import Homework from './components/Homework.vue';
+import Homework from './components/Project.vue';
 import axios from "axios";
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     Homework
   },
   data() {
     return {
       message: "Welcome",
-      message2: "The Rick And Morty API",
-      message3: "Visit website",
-      message4: "Conditional message",
-      isSentence: false,
-      wonders: ["CHICHEN ITZA", "CHRIST THE REDEEMER", "TAJ MAHAL", "GREAT WALL OF CHINA", "MACHU PICCHU", "PETRA", "COLOSSEUM"],
+      message2: "The Rick And Morty API by Alejandro Lemus",
+      message3: "Visit API Website",
+      message4: "Conditional message should Appear",
+      isSentence: true,
       Characters: null,
     };
   },
@@ -88,8 +97,17 @@ p {
   border-width: 14px;
   border-radius: 10%;
   width: 750px;
+  margin-bottom: 40px;
+  transition: 500ms;
 
 }
+
+.main-img:hover{
+  filter: opacity(.5);
+  -webkit-transform:scale(1.3);transform:scale(0.8);
+  cursor: pointer;
+}
+
 .img-chars {
   box-shadow: 1px 1px 2px 2px #7a8185;
   border-style: double;
@@ -97,13 +115,16 @@ p {
   border-width: 14px;
   width: 300px;
   border-radius: 20%;
+  transition: 400ms;
 }
 
-/* img:hover{
+.img-chars:hover{
   border-radius: 30%;
   cursor: pointer;
-  width: 400px;
-} */
+  border-color: #4dfc3e;
+  -webkit-transform:scale(1.3);transform:scale(0.9);
+  cursor: pointer;
+} 
 
 div {
   font-family: 'Delicious Handrawn', cursive;
@@ -111,27 +132,60 @@ div {
   color: rgba(0, 0, 0, 0.899);
 }
 
-button {
-  background-color: #086308;
-  width: 200px;
-  height: 50px;
-  font-size: x-large;
-  color: white;
-  border: white;
-  border-radius: 50%;
-  font-weight: 300;
-  font-family: 'Delicious Handrawn', cursive;
+.div-names{
+  color: #0a1aaa;
+  font-weight: bold;
+  margin-bottom: 10px;
+  
 }
 
-button:hover {
-  background-color: #48db48;
-  width: 180px;
-  height: 50px;
-  font-size: x-large;
-  color: black;
-  border: white;
-  border-radius: 50%;
+.div-names:hover{
+  -webkit-transform:scale(1.3);transform:scale(1.5);
+  color: #4dfc3e;
   cursor: pointer;
+}
+
+.div-descrip:hover{
+  -webkit-transform:scale(1.3);transform:scale(1.5);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.p-main:hover{
+  -webkit-transform:scale(1.3);transform:scale(1.5);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.h1-main:hover{
+  -webkit-transform:scale(1.3);transform:scale(1.7);
+  cursor: pointer;
+  font-weight: 700;
+  color: white;
+}
+
+.btn-api{
+  margin-bottom: 30px;
+  background-color: #4dfc3e;
+  border-radius: 50%;
+  font-size: larger;
+  font-weight: bold;
+  padding: 14px;
+  font-family: 'Delicious Handrawn', cursive;
+  border-color: white;
+  transition: 500ms;
+}
+
+.btn-api:hover{
+  background-color: #f1f500;
+  -webkit-transform:scale(1.3);transform:scale(0.8);
+}
+
+.div-bottom{
+  margin-top: 20px;
+  font-size: larger;
+  font-weight: bold;
+  font-family: 'Delicious Handrawn', cursive;
 }
 
 </style>
